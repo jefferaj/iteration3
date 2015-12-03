@@ -1,0 +1,58 @@
+<!-- app/views/movies/index.html.erb -->
+<script type="text/javascript" src="assets\heartRatingScript.js"></script>
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+
+    <div class="well" id="movieSection">
+    <div class="starter-template">
+
+<table>
+  <thead>
+    <tr>
+	<th class="col-md-1"></th>
+      <th class="col-md-2"><%= link_to "Title", :sort => "title" %></th>
+      <th><%= link_to "Review", :sort => "review" %></th>
+      <th class="col-md-1"><%= link_to "Year", :sort => "year" %></th>
+      <th><%= link_to "Genre", :sort => "genre" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody onload="toHearts()">
+    <% @movies.each do |movie| %>
+      <tr>
+	<td class="col-md-2"><%= image_tag(movie.image, size: "90x120") %></td>
+        <td class="col-md-2"><%= movie.title %></td>
+        <td class="rating">
+
+	<% if movie.review == 1 %>
+		<%= image_tag("1tree.png") %>
+	<% end %>
+	<% if movie.review == 2 %>
+		<%= image_tag("2tree.png") %>
+	<% end %>
+	<% if movie.review == 3 %>
+		<%= image_tag("3tree.png") %>
+	<% end %>
+	<% if movie.review == 4 %>
+		<%= image_tag("4tree.png") %>
+	<% end %>
+	<% if movie.review == 5 %>
+		<%= image_tag("5tree.png") %>
+	<% end %>
+
+	</td>
+        <td class="col-md-1"><%= movie.year %></td>
+        <td><%= movie.genre %></td>
+        <td><%= link_to 'Show', movie, class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_movie_path(movie), class: 'btn btn-info btn-xs' %></td>
+        <td><%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

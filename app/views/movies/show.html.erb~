@@ -1,0 +1,77 @@
+<script type="text/javascript" src="heartRatingScript.js"></script>
+<div class="well" id="movieSection">
+	<div class="starter-template">
+	<div class="row">
+		<div class="col-md-4">
+			<p>
+				<%= image_tag(@movie.image, :size => "300x500") %> 
+			</p>
+		</div>
+
+		<div class="col-md-8" onload="toHearts()">
+			<p id="notice">
+			<%= notice %>
+			</p>
+
+
+
+			<p>
+ 		 	<strong>Title:</strong>
+ 		 	<%= @movie.title %>
+			</p>
+
+			<p class="rating">
+ 			 <strong>Review:</strong>
+	<% if @movie.review == 1 %>
+		<%= image_tag("1tree.png") %>
+	<% end %>
+	<% if @movie.review == 2 %>
+		<%= image_tag("2tree.png") %>
+	<% end %>
+	<% if @movie.review == 3 %>
+		<%= image_tag("3tree.png") %>
+	<% end %>
+	<% if @movie.review == 4 %>
+		<%= image_tag("4tree.png") %>
+	<% end %>
+	<% if @movie.review == 5 %>
+		<%= image_tag("5tree.png") %>
+	<% end %>
+			</p>
+
+			<p>
+  			<strong>Year:</strong>
+  			<%= @movie.year %>
+			</p>
+
+			<p>
+  			<strong>Genre:</strong>
+  			<%= @movie.genre %>
+			</p>
+
+			<p>
+  			<strong>Synopsis:</strong>
+  			<%= @movie.synopsis %>
+			</p>
+			<body >
+			<h3><strong>Comments</strong></h3>
+				<% @comments.each do |comment| %>
+  			<div>
+    				<strong><%= comment.user_name %></strong>
+    				<br />
+    				<p><%= comment.body %></p>
+    				<p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  			</div>
+			<% end %>
+			<%= render 'comments/form' %>
+			</body>
+		</div>
+	
+	</div>
+	</div>
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>
+
+
+
+</div>

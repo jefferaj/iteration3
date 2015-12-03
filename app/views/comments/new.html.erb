@@ -1,0 +1,8 @@
+<h1>New Comment</h1>
+
+
+<%= f.hidden_field :user_name, :value => current_user.first_name %> 
+<%= render 'form' %>
+
+
+<%= link_to 'Back', comments_path %>
